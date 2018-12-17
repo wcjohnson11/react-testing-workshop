@@ -26,7 +26,7 @@ import ItemList from '../item-list'
 //   for example: `expect('some text content').toMatch('text')`)
 //
 // For your second test, it will be very similar to the first.
-test('It expects the container to be empty when there are no items', () => {
+test('It expects the container to match "no items" when there are no items', () => {
   const container = document.createElement('div');
   ReactDOM.render(<ItemList items={[]}/>, container);
   expect(container.textContent).toMatch('no items');
