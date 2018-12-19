@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:e2e:dev": "npm-run-all --parallel dev cy:open",
+    "cy:open": "cypress open",
+    "test:e2e": "npm-run-all --parallel --race start cy:run",
+    "cy:run": "cypress run",
     "dev": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production",
     "start": "serve --port 8080"
