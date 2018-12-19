@@ -12,5 +12,6 @@ describe('calculator', () => {
             .click()
             .getByText(/^=$/)
             .click()
+            .getByTestId('number-display')
     })
 })
