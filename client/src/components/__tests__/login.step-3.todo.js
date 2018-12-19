@@ -12,13 +12,14 @@ test('calls onSubmit with the username and password when submitted', () => {
   const handleSubmit = jest.fn()
   const {getByLabelText, getByText} = render(<Login onSubmit={handleSubmit} />)
 
-  const usernameNode = getByLabelText(/username/i)
-  const passwordNode = getByLabelText(/password/i)
+  const usernameNode = getByLabelText('Username')
+  const passwordNode = getByLabelText('Password')
+  const submitButtonNode = getByText('Submit')
 
   // Act
   usernameNode.value = fakeUser.username
   passwordNode.value = fakeUser.password
-  getByText(/submit/i).click()
+  submitButtonNode.click()
 
   // Assert
   expect(handleSubmit).toHaveBeenCalledTimes(1)
