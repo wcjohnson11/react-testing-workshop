@@ -6,7 +6,15 @@
 import {generate} from '../utils'
 
 describe('authentication', () => {
-  beforeEach(() => cy.logout())
+  let user
+  beforeEach(() => {
+    return cy
+      .logout()
+      .createNewUser()
+      .then(u => (user = u))
+      .visit('/')
+  })
+
 
   it('should allow existing users to login', () => {
     // you'll want to first create a new user.
@@ -24,6 +32,16 @@ describe('authentication', () => {
     //
     // Finally assert the route changed to '/'
     // and verify that the display name contains user.username
+    cy.getByText(/login/i)
+      .click()
+      .getByLabelText(/username/i)
+      .type(user.username)
+      .getByLabelText(/password/i)
+      .type(user.password)
+      .getByText(/submit/i)
+      .click()
+      .assertRoute('/')
+    cy.getByTestId('username-display').should('contain', user.username)
   })
 
   //////// Elaboration & Feedback /////////
